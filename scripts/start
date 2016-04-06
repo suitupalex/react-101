@@ -1,0 +1,9 @@
+#!/bin/bash
+
+printf "Starting http-server:\n\n"
+hs ./dist -p $REACT_101_PORT -o --cors
+hsResult=$?
+
+echo "Finished running."
+
+! (( $hsResult ))

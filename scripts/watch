@@ -1,0 +1,14 @@
+#!/bin/bash
+
+printf "Watching with webpack and http-server:\n\n"
+
+trap 'printf "\n\nKilling webpack and http-server.\n"; kill $(jobs -p); wait $WEBPACK_PID; wait $HS_PID' 2 9
+
+webpack --progress --colors --watch &
+WEBPACK_PID=$!
+
+hs ./dist -p $REACT_101_PORT -o --cors &
+HS_PID=$!
+
+wait $WEBPACK_PID
+wait $HS_PID

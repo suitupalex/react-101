@@ -1,0 +1,9 @@
+#!/bin/bash
+
+printf "Building with webpack:\n\n"
+webpack --progress --colors
+webpackResult=$?
+
+echo "Finished building."
+
+! (( $webpackResult ))
